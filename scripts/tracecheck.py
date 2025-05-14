@@ -132,6 +132,9 @@ def main():
 
     # Build the source
     if options.build:
+        if not re.match(r'^[a-zA-Z0-9_\-/\\]+$', options.build):
+            sys.stderr.write("Invalid build command\n")
+            skip()
         sys.stdout.write(options.build + '\n')
         sys.stdout.flush()
         returncode = subprocess.call(options.build, shell=True)
